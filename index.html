@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Login System</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h1>Login</h1>
+      <form>
+        <label for="loginUsername">Nome de Usuário:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+        <label for="loginPassword">Senha:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+        <button type="submit" id="btnLogin">Entrar</button>
+      </form>
+    </div>
+    <div class="register-form">
+      <h1>Registro</h1>
+      <form>
+        <label for="registerUsername">Nome de Usuário:</label>
+        <input type="text" id="registerUsername" name="registerUsername" required>
+        <label for="registerPassword">Senha:</label>
+        <input type="password" id="registerPassword" name="registerPassword" required>
+        <label for="confirmPassword">Confirmar Senha:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <button type="submit" id="btnRegister">Registrar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/login.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>
