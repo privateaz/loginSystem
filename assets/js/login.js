@@ -1,7 +1,6 @@
-// Login.js
 const [loginUsername, loginPassword] = document.querySelectorAll("#loginUsername, #loginPassword");
 
-const btnLogin = document.getElementById("btnLogin"); // Adicionei a variável btnLogin para facilitar o acesso ao botão de login
+const btnLogin = document.getElementById("btnLogin"); 
 
 btnLogin.addEventListener("click", (event) => {
   event.preventDefault();

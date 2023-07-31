@@ -16,7 +16,7 @@ function checkFields() {
   const registerPasswordValue = registerPassword.value;
   const confirmPasswordValue = confirmPassword.value;
 
-  let hasError = false; // Variável para controlar se algum erro foi encontrado
+  let hasError = false;
 
   if (!usernamePattern.test(registerUsernameValue)) {
     createError(
@@ -48,7 +48,6 @@ function checkFields() {
     const usersJSON = localStorage.getItem("users");
     let users = JSON.parse(usersJSON) || [];
   
-    // Verifica se o nome de usuário já está em uso
     const existingUser = users.find((u) => u.username === user.username);
     if (existingUser) {
       alert("Username already in use. Please choose another username.");
@@ -82,4 +81,4 @@ function createError(errorCamp, message) {
 const usersJSON = localStorage.getItem("users");
 const users = JSON.parse(usersJSON) || [];
 
-console.log(users); // O array de usuários recuperado
+console.log(users); 
