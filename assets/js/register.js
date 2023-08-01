@@ -80,5 +80,3 @@ function createError(errorCamp, message) {
 
 const usersJSON = localStorage.getItem("users");
 const users = JSON.parse(usersJSON) || [];
-
-console.log(users); 
