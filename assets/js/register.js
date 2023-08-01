@@ -1,10 +1,10 @@
-// Register.js
 const [registerUsername, registerPassword, confirmPassword, btnRegister] =
   document.querySelectorAll("#registerUsername, #registerPassword, #confirmPassword, #btnRegister");
 
 btnRegister.addEventListener("click", (event) => {
   event.preventDefault();
-  clearErrorMessages();
+  clearMessages("success-text");
+  clearMessages("error-text");
   checkFields();
 });
 
@@ -19,23 +19,25 @@ function checkFields() {
   let hasError = false;
 
   if (!usernamePattern.test(registerUsernameValue)) {
-    createError(
+    createMessage(
       registerUsername,
-      `This field needs to be between 3 and 12 characters`
+      `This field needs to be between 3 and 12 characters`,
+      "error-text"
     );
     hasError = true;
   }
 
   if (!passwordPattern.test(registerPasswordValue)) {
-    createError(
+    createMessage(
       registerPassword,
-      `This field must have at least 6 characters, a capital letter, and a symbol.`
+      `This field must have at least 6 characters, a capital letter, and a symbol.`,
+      "error-text"
     );
     hasError = true;
   }
 
   if (registerPasswordValue !== confirmPasswordValue) {
-    createError(confirmPassword, `Passwords must be the same.`);
+    createMessage(confirmPassword, `Passwords must be the same.`, "error-text");
     hasError = true;
   }
 
@@ -50,7 +52,7 @@ function checkFields() {
   
     const existingUser = users.find((u) => u.username === user.username);
     if (existingUser) {
-      alert("Username already in use. Please choose another username.");
+      createMessage(registerUsername, `Username already use`, "error-text")
       return;
     }
   
@@ -58,25 +60,26 @@ function checkFields() {
   
     const usersUpdatedJSON = JSON.stringify(users);
     localStorage.setItem("users", usersUpdatedJSON);
-    alert("User saved in Local Storage!");
+    createMessage(confirmPassword, `Your account has been successfully created!`, "success-text")
     registerUsername.value = ""
     registerPassword.value = ""
     confirmPassword.value = ""
   }
 }
 
-function clearErrorMessages() {
-  const errorMessages = document.querySelectorAll(".error-text");
-  errorMessages.forEach((errorMessage) => errorMessage.remove());
-}
-
-function createError(errorCamp, message) {
-  if (errorCamp.classList.contains("error-text")) return;
+function createMessage(beforeElem, message, type) {
+  if (beforeElem.classList.contains(type)) return;
   const div = document.createElement("div");
   div.textContent = message;
-  div.classList.add("error-text");
-  errorCamp.insertAdjacentElement("afterend", div);
+  div.classList.add(type);
+  beforeElem.parentNode.insertBefore(div, beforeElem.nextSibling);
 }
+
+function clearMessages(type) {
+  const messages = document.querySelectorAll("." + type);
+  messages.forEach((message) => message.remove());
+}
+
 
 const usersJSON = localStorage.getItem("users");
 const users = JSON.parse(usersJSON) || [];
